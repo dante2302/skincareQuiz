@@ -2,18 +2,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .home-img {
   width: 100vw;
 }
 
-.home-foreground-img {
+.home-overlay {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
   width: 100vw;
+  height: 100%;
+  background-color: var(--clr-light-overlay);
 }
 
 .home-content-container {
@@ -71,6 +74,5 @@
 }
 
 .home-button:hover {
-  background-color: var(clr-accent-blue);
-  transition: 0.2s;
+  background-color: var(--clr-blue);
 }

@@ -1,6 +1,5 @@
 import homeImg from "/assets/homeImg.png";
-import homeForeground from "/assets/homeForeground.png";
-import "./home.css";
+import "./HomePage.css";
 
 export default function HomePage() {
   return (
@@ -12,11 +11,10 @@ export default function HomePage() {
           alt="Home Image"
         />
 
-        <img
-          src={homeForeground}
-          alt="Foreground"
-          className="home-foreground-img"
-        />
+        <div
+          className="home-overlay"
+        >
+        </div>
 
         <div className="home-content-container">
           <div className="home-text-container">

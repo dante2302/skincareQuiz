@@ -1,7 +1,5 @@
 import resultsImg from "/assets/resultsImg.png";
-import resultsForeground from "/assets/resultsForeground.png";
 import "./ResultsPage.css";
-import ProgressBar from "../ProgressBar/ProgressBar";
 
 export default function ResultsPage() {
     return (
@@ -12,12 +10,9 @@ export default function ResultsPage() {
                 className="results-img"
             />
 
-            <img
-                src={resultsForeground}
-                alt="Foreground"
-                className="results-foreground-img"
-            />
+            <div className="results-overlay">
 
+            </div>
             <div className="results-hero-content">
                 <div className="results-hero-text-container">
                     <h1 className="results-hero-heading">Build your everyday self care routine.</h1>

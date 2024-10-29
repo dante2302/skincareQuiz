@@ -2,18 +2,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .results-hero .results-img{
   width: 100%;
 }
 
-.results-hero .results-foreground-img{
+.results-overlay{
   z-index: 1;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
+  background: var(--clr-dark-overlay);
 }
 
 .results-hero-content {

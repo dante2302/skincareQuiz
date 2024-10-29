@@ -11,10 +11,17 @@
     --clr-marble: #eef7fb;
     --clr-lightblue: #c3edff;
     --clr-darkblue: #1c2635;
-    --clr-accent-blue: #52a9ce;
+    --clr-blue: #52a9ce;
+    --clr-light-overlay: rgba(0, 0, 0, 0.35);
+    --clr-dark-overlay:  rgba(0,0,0, .55)
 }
 
 body{
     margin: 0;
     padding: 0;
+}
+
+*, *::before, *::after
+{
+    box-sizing: border-box;
 }
