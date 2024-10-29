@@ -1,3 +1,13 @@
+:root{
+    --fs-reg: 16px;
+    --fs-xl: 40px;
+
+    --clr-white: #fff;
+    --clr-lightblue: #c3edff;
+    --clr-darkblue: #1c2635;
+    --clr-accent-blue: #52a9ce;
+}
+
 body{
     margin: 0;
     padding: 0;
