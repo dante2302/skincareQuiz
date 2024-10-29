@@ -1,9 +1,11 @@
 import resultsImg from "/assets/resultsImg.png";
 import resultsForeground from "/assets/resultsForeground.png";
 import "./ResultsPage.css";
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 export default function ResultsPage() {
     return (
+        <>
         <div className="results-hero">
             <img
                 src={resultsImg}
@@ -19,7 +21,7 @@ export default function ResultsPage() {
 
             <div className="results-hero-content">
                 <div className="results-hero-text-container">
-                    <h1 className="results-hero-heading">Build you everyday self care routine.</h1>
+                    <h1 className="results-hero-heading">Build your everyday self care routine.</h1>
                     <p className="results-hero-text">
                         Perfect for if you're looking for soft, nourished skin, our
                         moisturizing body washes are made with skin-natural nutrients that
@@ -34,5 +36,7 @@ export default function ResultsPage() {
                 </div>
             </div>
         </div>
+        <ProgressBar color="red" percentage={20}/>
+        </>
     );
 }
