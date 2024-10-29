@@ -2,7 +2,7 @@ import homeImg from "../../assets/homeImg.png";
 import homeForeground from "../../assets/homeForeground.png";
 import "./home.css";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div>
       <div className="home-outer-wrap">

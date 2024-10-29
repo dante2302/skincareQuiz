@@ -1,10 +1,11 @@
-import Home from "./Home/Home";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./Home/HomePage";
 
 export default function App()
 {
     return (
-        <Home>
-
-        </Home>
-    )
+        <Routes>
+            <Route path="/" element={<HomePage />} />
+        </Routes>
+    );
 }
