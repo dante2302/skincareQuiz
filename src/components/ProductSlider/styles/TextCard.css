@@ -7,22 +7,22 @@
     padding: 30px;
     text-align: center;
     background-color: var(--clr-marble);
-    border: none;
+    border: 1px solid black;
     border-radius: 10px;
 }
 
 .text-card h2 {
-    font-family: var(--ff-oswlad), sans-serif;
-    font-size: 20pt;
+    font-family: var(--ff-oswald), sans-serif;
+    font-size: calc(var(--fs-reg) + 10px);
     font-weight: 600;
     color: var(--clr-darkblue);
 }
 
 .noteCard p {
     margin: 40px;
-    font-size: 14pt;
+    font-size: var(--fs-reg);
     text-align: left;
-    font-family: "proxima-nova", sans-serif;
+    font-family: var(--ff-montserrat);
     line-height: 24px;
     font-weight: 400;
     color: var(--clr-darkblue);

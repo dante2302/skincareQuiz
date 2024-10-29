@@ -2,6 +2,8 @@ export interface ProgressBarCircleProps
 {
     color: string,
     percentage: number,
+    radius?: number,
+    strokeWidth?: string
 }
 
 export interface ProgressBarTextProps
