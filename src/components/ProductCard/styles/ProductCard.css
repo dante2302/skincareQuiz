@@ -1,0 +1,48 @@
+.product-card {
+  z-index: 1;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-radius: 10px;
+  max-width: 350px;
+  max-height: 500px;
+  background-color: #fff;
+  text-align: center;
+  padding: 30px;
+  position: relative;
+  margin: 10px;
+  border: 1px solid black;
+}
+
+.product-img {
+  border-radius: 10px;
+  max-width: 350px;
+  width: 288px;
+  background: red;
+  height: 350px;
+  max-height: 345px;
+
+}
+
+.product-card h2 {
+  font-size: var(--fs-reg);
+  font-family: "Courier New", Courier, monospace;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  color: var(--clr-darkblue);
+  margin: 0;
+}
+
+.product-card p {
+  margin: 0;
+  font-size: var(--fs-reg);
+  color: var(--clr-darkblue);
+}
+
+.product-card div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
