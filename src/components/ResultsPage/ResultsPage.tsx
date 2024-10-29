@@ -5,7 +5,6 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 
 export default function ResultsPage() {
     return (
-        <>
         <div className="results-hero">
             <img
                 src={resultsImg}
@@ -36,7 +35,5 @@ export default function ResultsPage() {
                 </div>
             </div>
         </div>
-        <ProgressBar color="red" percentage={20}/>
-        </>
     );
 }

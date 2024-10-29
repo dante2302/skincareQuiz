@@ -2,15 +2,21 @@ import ProgressBarProps from "../../interfaces/ProgressBarProps";
 import Circle from "./Circle";
 import Text from "./Text";
 
-export default function ProgressBar ({color, percentage}: ProgressBarProps){
+export default function ProgressBar({
+  color,
+  percentage,
+  width = 200,
+  height = 200
+}: ProgressBarProps) 
+{
   const pct = filterPercentage(percentage);
   return (
-    <svg width={200} height={200}>
+    <svg width={width} height={height}>
       <g transform={`rotate(-90 ${"100 100"})`}>
         {/* Setting initial percentage to 100 of the first circle so that  
             There's a grey circle to be filled
         */}
-        <Circle color="lightgrey" percentage={100}/>
+        <Circle color="lightgrey" percentage={100} />
         <Circle color={color} percentage={pct} />
       </g>
       <Text percentage={pct} />

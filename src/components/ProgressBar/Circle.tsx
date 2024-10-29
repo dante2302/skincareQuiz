@@ -1,6 +1,6 @@
-import CircleProps from "../../interfaces/ProgressBarProps";
+import { ProgressBarCircleProps } from "../../interfaces/ProgressBarProps";
 
-export default function Circle({ color, percentage }: CircleProps) {
+export default function Circle({ color, percentage }: ProgressBarCircleProps) {
   const r = 70;
   const circ = 2 * Math.PI * r;
   const strokePct = ((100 - percentage) * circ) / 100; // where stroke will start, e.g. from 15% to 100%.

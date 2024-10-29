@@ -1,12 +1,22 @@
-export default function Text({ percentage }: { percentage: number })
+import { ProgressBarTextProps } from "../../interfaces/ProgressBarProps";
+
+export default function Text({
+  percentage,
+  fontSize="1.5em",
+  x="50%",
+  y="50%",
+  dominantBaseline="central",
+  textAnchor="middle"
+
+}: ProgressBarTextProps)
 {
   return (
     <text
-      x="50%"
-      y="50%"
-      dominantBaseline="central"
-      textAnchor="middle"
-      fontSize={"1.5em"}
+      x={x}
+      y={y}
+      dominantBaseline={dominantBaseline}
+      textAnchor={textAnchor}
+      fontSize={fontSize}
     >
       {percentage.toFixed(0)}%
     </text>
