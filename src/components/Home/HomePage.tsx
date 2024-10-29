@@ -1,5 +1,5 @@
-import homeImg from "../../assets/homeImg.png";
-import homeForeground from "../../assets/homeForeground.png";
+import homeImg from "/assets/homeImg.png";
+import homeForeground from "/assets/homeForeground.png";
 import "./home.css";
 
 export default function HomePage() {
