@@ -37,14 +37,14 @@
 }
 
 .home-text-container h1 {
-  font-family: "Oswald";
+  font-family: var(--ff-oswald);
   font-weight: 400;
   font-size: var(--fs-xl);
   margin: 0;
 }
 
 .home-text-container p {
-    font-family: "Montserrat";
+    font-family: var(--ff-montserrat);
     font-size: var(--fs-reg);
     margin: 0;
 }

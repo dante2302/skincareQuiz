@@ -3,7 +3,12 @@
     --fs-reg: 16px;
     --fs-xl: 40px;
 
+    --ff-oswald: "Oswald", sans-serif;
+    --ff-montserrat: "Montserrat", sans-serif;
+    --ff-default: "Oswald";
+
     --clr-white: #fff;
+    --clr-marble: #eef7fb;
     --clr-lightblue: #c3edff;
     --clr-darkblue: #1c2635;
     --clr-accent-blue: #52a9ce;

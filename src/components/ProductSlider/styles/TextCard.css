@@ -1,0 +1,29 @@
+.text-card {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 350px;
+    height: 450px;
+    padding: 30px;
+    text-align: center;
+    background-color: var(--clr-marble);
+    border: none;
+    border-radius: 10px;
+}
+
+.text-card h2 {
+    font-family: var(--ff-oswlad), sans-serif;
+    font-size: 20pt;
+    font-weight: 600;
+    color: var(--clr-darkblue);
+}
+
+.noteCard p {
+    margin: 40px;
+    font-size: 14pt;
+    text-align: left;
+    font-family: "proxima-nova", sans-serif;
+    line-height: 24px;
+    font-weight: 400;
+    color: var(--clr-darkblue);
+}
