@@ -1,4 +1,4 @@
-import ProgressBarProps from "../../interfaces/ProgressBarProps";
+import ProgressBarProps from "../../interfaces/ProgressBarProps.interface";
 import Circle from "./Circle";
 import Text from "./Text";
 
@@ -25,7 +25,7 @@ export default function ProgressBar({
 };
 
 function filterPercentage(percentage: number) {
-  const isNegativeOrNaN = !Number.isFinite(+percentage) || percentage < 0; // we can set non-numbers to 0 here
+  const isNegativeOrNaN = !Number.isFinite(+percentage) || percentage < 0; // We can set non-numbers to 0 here
   const isTooHigh = percentage > 100;
 
   if (isNegativeOrNaN) return 0;

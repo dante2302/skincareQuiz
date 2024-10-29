@@ -7,11 +7,9 @@ export default function TextCard({
 }) 
 {
     return (
-        <div>
             <div className="text-card">
                 <h2>{heading}</h2>
                 <p>{paragraph}</p>
             </div>
-        </div>
     );
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Heart from "../SVG/Heart";
+import Heart from "../SVGs/Heart";
 import "./styles/FavoriteButton.css";
 
 export default function FavoriteButton()

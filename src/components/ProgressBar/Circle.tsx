@@ -1,4 +1,4 @@
-import { ProgressBarCircleProps } from "../../interfaces/ProgressBarProps";
+import { ProgressBarCircleProps } from "../../interfaces/ProgressBarProps.interface";
 
 export default function Circle({ 
     color, 

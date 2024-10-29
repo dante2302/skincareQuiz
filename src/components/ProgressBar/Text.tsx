@@ -1,4 +1,4 @@
-import { ProgressBarTextProps } from "../../interfaces/ProgressBarProps";
+import { ProgressBarTextProps } from "../../interfaces/ProgressBarProps.interface";
 
 export default function Text({
   percentage,

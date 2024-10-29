@@ -1,7 +1,7 @@
 import FavoriteButton from "./FavoriteButton";
 import "./styles/ProductCard.css";
 
-export default function ProductCard() {
+export default function ProductCard({price}: {price: number}) {
     return (
         <div className="product-card">
             <FavoriteButton />
@@ -9,7 +9,7 @@ export default function ProductCard() {
             </div>
             <div>
                 <h2>Product TItle</h2>
-                <p>$49.99</p>
+                <p>{price}</p>
             </div>
         </div>
     );

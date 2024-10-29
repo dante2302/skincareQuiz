@@ -1,13 +1,12 @@
 .text-card {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 10px;
     width: 350px;
     height: 450px;
-    padding: 30px;
+    padding: 30px 60px;
     text-align: center;
     background-color: var(--clr-marble);
-    border: 1px solid black;
     border-radius: 10px;
 }
 
@@ -16,11 +15,11 @@
     font-size: calc(var(--fs-reg) + 10px);
     font-weight: 600;
     color: var(--clr-darkblue);
+    margin: 0;
 }
 
-.noteCard p {
-    margin: 40px;
-    font-size: var(--fs-reg);
+.text-card p {
+    font-size: calc(var(--fs-sm) + 3px);
     text-align: left;
     font-family: var(--ff-montserrat);
     line-height: 24px;
