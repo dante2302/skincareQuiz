@@ -116,6 +116,10 @@ button{
   color: #1c2635;
 }
 
+.active-answer {
+  background: rgb(123, 123, 123, 0.3) !important;
+}
+
 .next-question-button img{
   margin-left: 5px;
 }

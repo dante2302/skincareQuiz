@@ -4,7 +4,7 @@ import { LOCAL_STORAGE_KEYS } from '../enums/LocalStorageKeys.enum';
 import { useNavigate } from 'react-router-dom';
 import { Status, STATUS } from '../enums/Statuses.enum';
 import QuizContextType from '../interfaces/QuizContextType.interface';
-
+import { QuizObject } from '../interfaces/QuizObject.interface';
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
 
 export const useQuizContext = () => {
@@ -15,48 +15,63 @@ export const useQuizContext = () => {
   return context;
 };
 
-export const QuizProvider = ({ children }: { children: ReactNode }) => {
-    const [questionAnswers, setQuestionAnswers] =
-        useLocalStorage<string[]>(
-            LOCAL_STORAGE_KEYS.questionAnswers,
-            Array(10).fill("")
-        );
+export const QuizProvider = ({ children, quiz }: { children: ReactNode, quiz: QuizObject }) => {
+  const [questionAnswers, setQuestionAnswers] =
+    useLocalStorage<string[]>(
+      LOCAL_STORAGE_KEYS.questionAnswers,
+      Array(quiz.length).fill("")
+    );
 
-    const [activeAnswers, setActiveAnswers] =
-        useLocalStorage<string[]>(LOCAL_STORAGE_KEYS.activeAnswers, Array(10).fill(""));
+  const [activeAnswers, setActiveAnswers] =
+    useLocalStorage<string[]>(
+      LOCAL_STORAGE_KEYS.activeAnswers, 
+      Array(quiz.length).fill("")
+    );
 
-    const [error, setError] = useState<Status>(STATUS.Success);
-    const navigate = useNavigate();
+  const [error, setError] = useState<Status>(STATUS.Success);
+  const navigate = useNavigate();
 
-    const navigateBack = (questionNumber: number) => {
-        if (questionNumber === 1) return navigate("/");
-        navigate(`/question-${questionNumber - 1}`);
-    };
-
-    const navigateForward = (questionNumber: number) => {
-        if (questionAnswers[questionNumber - 1] === "") {
-            setError(STATUS.Error);
-            return;
-        }
-        if (questionNumber === questionAnswers.length) return navigate("/quiz-results");
-        navigate(`/question-${questionNumber + 1}`);
-    };
-
-    const chooseAnswer = (answer: string, idx: number) => {
-        setQuestionAnswers((prev) => {
-            const updated = [...prev];
-            updated[idx] = answer.toLowerCase();
-            return updated;
-        });
-
-        setError(STATUS.Success);
-
-        setActiveAnswers((prev) => {
-            const updated = [...prev];
-            updated[idx] = answer;
-            return updated;
-        });
+  const navigateForward = (questionIdx: number) => {
+    if (questionAnswers[questionIdx] === "") {
+      setError(STATUS.Error);
+      return;
     }
+
+    if (questionIdx === questionAnswers.length - 1) {
+      navigate("/quiz-results");
+      return
+    }
+
+    navigate(`/question-${questionIdx + 2}`);
+    // Idx is always 1 behind URL question number
+    // To move forward - idx+2
+  };
+
+  const navigateBack = (questionIdx: number) => {
+    if (questionIdx == 0) {
+      navigate("/");
+      return;
+    }
+    navigate(`/question-${questionIdx}`);
+    // Idx is always 1 behind URL question number
+    // To move backward - go to the /question-idx
+  };
+
+  const chooseAnswer = (answer: string, idx: number) => {
+    setQuestionAnswers((prev) => {
+      const updated = [...prev];
+      updated[idx] = answer.toLowerCase();
+      return updated;
+    });
+
+    setError(STATUS.Success);
+
+    setActiveAnswers((prev) => {
+      const updated = [...prev];
+      updated[idx] = answer;
+      return updated;
+    });
+  }
 
   return (
     <QuizContext.Provider
@@ -70,6 +85,7 @@ export const QuizProvider = ({ children }: { children: ReactNode }) => {
         navigateBack,
         navigateForward,
         chooseAnswer,
+        quizLength: quiz.length
       }}
     >
       {children}

@@ -3,7 +3,8 @@ import Circle from "./Circle";
 import Text from "./Text";
 
 export default function ProgressBar({
-  color,
+  pathColor="lightgrey",
+  trailColor="lightblue",
   percentage,
   width = 200,
   height = 200
@@ -16,8 +17,8 @@ export default function ProgressBar({
         {/* Setting initial percentage to 100 of the first circle so that  
             There's a grey circle to be filled
         */}
-        <Circle color="lightgrey" percentage={100} />
-        <Circle color={color} percentage={pct} />
+        <Circle color={pathColor} percentage={100} />
+        <Circle color={trailColor} percentage={pct} />
       </g>
       <Text percentage={pct} />
     </svg>

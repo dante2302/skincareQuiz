@@ -1,4 +1,6 @@
-const quizObject = [
+import { QuizObject } from "../interfaces/QuizObject.interface";
+
+const quizObject: QuizObject = [
   {
     question: "What's your hair type or texture?",
     answers: [

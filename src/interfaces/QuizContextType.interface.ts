@@ -10,4 +10,5 @@ export default interface QuizContextType {
   navigateBack: (questionNumber: number) => void;
   navigateForward: (questionNumber: number) => void;
   chooseAnswer: (answer: string, idx: number) => void;
+  quizLength: number
 }

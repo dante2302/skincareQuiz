@@ -16,8 +16,11 @@ export interface ProgressBarTextProps
     dominantBaseline?: string
 }
 
-export default interface ProgressBarProps extends ProgressBarCircleProps
+export default interface ProgressBarProps 
 {
+    trailColor?: string,
+    pathColor?: string,
+    percentage: number,
     width?: number,
     height?: number,
 }
