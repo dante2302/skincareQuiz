@@ -1,5 +1,10 @@
-.a{
+.carousel-container{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carousel-container.with-main{
     flex-direction: row;
 }
 

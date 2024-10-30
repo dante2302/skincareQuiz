@@ -1,5 +1,5 @@
 import ProgressBar from "../ProgressBar/ProgressBar";
-import arrowLeft from "/assets/arrowLeft.png";
+import arrowLeft from "/assets/questionArrow.png";
 import "./styles/Question.css";
 
 export default function Question() {

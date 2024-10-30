@@ -2,15 +2,22 @@ import { useState } from 'react';
 import SliderArrow from '../SVGs/SliderArrow';
 import CarouselProps from '../../interfaces/CarouselProps.interface';
 import "./styles/ProductSlider.css";
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 export default function ProductSlider ({ mainItem, items, styleClass }: CarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const winDimensions = useWindowDimensions();
+    const WIDTH_BOUNDARY = 768;
 
     const totalItems = items.length;
 
     const handleNext = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % totalItems);
+        setCurrentIndex((prev) => (prev + 1) % totalItems);
     };
+
+    const handlePrev = () => {
+        setCurrentIndex((prev) => prev > 0 ? (prev - 1) % totalItems : items.length-1)
+    }
 
     const handleDotClick = (index: number) => {
         setCurrentIndex(index);
@@ -18,25 +25,19 @@ export default function ProductSlider ({ mainItem, items, styleClass }: Carousel
 
     return (
         <div className={`carousel ${styleClass} `}>
-            <div className='a'>
-
+            <div className={`carousel-container ${winDimensions.width > WIDTH_BOUNDARY ? "with-main" : ""}`}>
                 <div className="main-item">{mainItem}</div>
+                {winDimensions.width < WIDTH_BOUNDARY && 
+                <button className="arrow left" onClick={handlePrev}>
+                    <SliderArrow isLeft={true} />
+                </button>
+}
                 <div className="side-items">
-                    {totalItems > 0 && (
-                        <>
-                            {totalItems >= 1 && (
-                                <div className="side-item">{items[(currentIndex + 1) % totalItems]}</div>
-                            )}
-                            {totalItems > 2 && (
-                                <div className="side-item">{items[(currentIndex + 2) % totalItems]}</div>
-                            )}
-                        </>
-                    )}
                 </div>
                 {items.length > 1 &&
                     <button className="arrow right" onClick={handleNext}><SliderArrow /></button>}
-
             </div>
+
             {items.length > 1 &&
                 <div className="dots">
                     {items.map((_, index) => (
