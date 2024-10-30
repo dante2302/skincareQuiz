@@ -1,16 +1,26 @@
 import homeImg from "/assets/homeImg.png";
+import homeMobile from "/assets/home_mobile.png";
 import "./HomePage.css";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 export default function HomePage() {
+  const winDimensions = useWindowDimensions();
   return (
     <div>
       <div className="home-outer-wrap">
+        {winDimensions.width > 640 ?
         <img
           src={homeImg}
           className="home-img"
           alt="Home Image"
         />
-
+        : 
+        <img 
+          src={homeMobile} 
+          className={`${winDimensions.height < 600 ? "home-img-full-height": ""} home-mobile`}
+          alt="Home Image" 
+        />
+        }
         <div
           className="home-overlay"
         >

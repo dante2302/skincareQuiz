@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import SliderArrow from '../SVGs/SliderArrow';
 import CarouselProps from '../../interfaces/CarouselProps.interface';
-import './Carousel.css';
+import "./styles/ProductSlider.css";
 
 export default function ProductSlider ({ mainItem, items, styleClass }: CarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0);

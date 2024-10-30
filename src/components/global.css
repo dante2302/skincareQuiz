@@ -16,6 +16,15 @@
     --clr-dark-overlay:  rgba(0,0,0, .55)
 }
 
+@media(max-width: 768px)
+{
+    :root{
+        --fs-sm: 10px;
+        --fs-reg: 14px;
+        --fs-xl: 32px;
+    }
+}
+
 body{
     margin: 0;
     padding: 0;
