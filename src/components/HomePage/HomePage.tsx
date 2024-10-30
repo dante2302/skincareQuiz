@@ -1,5 +1,5 @@
 import homeImg from "/assets/homeImg.png";
-import homeMobile from "/assets/home_mobile.png";
+import homeMobile from "/assets/homeMobile.png";
 import "./HomePage.css";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 

@@ -1,15 +1,18 @@
 import resultsImg from "/assets/resultsImg.png";
+import resultsMobile from "/assets/resultsMobile.png";
 import "./ResultsPage.css";
 import TextCard from "../ProductSlider/TextCard";
 import ProductCard from "../ProductCard/ProductCard";
 import ProductSlider from "../ProductSlider/ProductSlider";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 export default function ResultsPage() {
+    let winDimensions = useWindowDimensions();
     return (
-        <div className="b">
+        <div className="results-outer">
         <div className="results-hero">
             <img
-                src={resultsImg}
+                src={winDimensions.width > 768 ? resultsImg : resultsMobile}
                 alt="Image"
                 className="results-img"
             />
@@ -34,7 +37,7 @@ export default function ResultsPage() {
                 </div>
             </div>
         </div>
-<ProductSlider items={[<ProductCard price={45}/>, <ProductCard price={55}/>, <ProductCard price={65}/>]} mainItem={<TextCard />} styleClass="carousel-positioning"/>
+<ProductSlider items={[<ProductCard price={45} key={1}/>, <ProductCard price={5} key={2}/>]} mainItem={<TextCard />} styleClass="carousel-positioning"/>
             </div>
     );
 }

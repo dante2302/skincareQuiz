@@ -2,6 +2,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-inline: 15px;
+    justify-content: center;
+}
+
+@media(max-width: 768px)
+{
+    .carousel-container{
+        gap: 50px
+    }
 }
 
 .carousel-container.with-main{
@@ -14,14 +23,12 @@
     align-items: center;
     position: relative;
     overflow: hidden;
-    margin-left: 10px;
     padding-bottom: 50px;
 }
 
 .main-item {
     width: 100%;
     transition: transform 0.3s ease;
-    margin-right: 20px;
 }
 
 .side-items {
@@ -46,7 +53,6 @@
     display: flex;
     justify-content: center;
     margin-top: 10px;
-    margin-right: 50px;
 }
 
 .dot {

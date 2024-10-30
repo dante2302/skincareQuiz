@@ -27,14 +27,30 @@ export default function ProductSlider ({ mainItem, items, styleClass }: Carousel
         <div className={`carousel ${styleClass} `}>
             <div className={`carousel-container ${winDimensions.width > WIDTH_BOUNDARY ? "with-main" : ""}`}>
                 <div className="main-item">{mainItem}</div>
-                {winDimensions.width < WIDTH_BOUNDARY && 
-                <button className="arrow left" onClick={handlePrev}>
-                    <SliderArrow isLeft={true} />
-                </button>
-}
+    
                 <div className="side-items">
+                    {(winDimensions.width < WIDTH_BOUNDARY && items.length > 1) &&
+                        <button className="arrow left" onClick={handlePrev}>
+                            <SliderArrow isLeft={true} />
+                        </button>
+                    }
+                    {totalItems > 0 && (
+                        <>
+                            {totalItems >= 1 && (
+                                <div className="side-item">{items[(currentIndex + 1) % totalItems]}</div>
+                            )}
+                            {(totalItems > 2 && winDimensions.width > WIDTH_BOUNDARY) && (
+                                <div className="side-item">{items[(currentIndex + 2) % totalItems]}</div>
+                            )}
+                        </>
+                    )}
+                    {(winDimensions.width < WIDTH_BOUNDARY && items.length > 1) &&
+                        <button className="arrow right" onClick={handleNext}>
+                            <SliderArrow />
+                        </button>
+                    }
                 </div>
-                {items.length > 1 &&
+                {(winDimensions.width > WIDTH_BOUNDARY && items.length > 1) &&
                     <button className="arrow right" onClick={handleNext}><SliderArrow /></button>}
             </div>
 
