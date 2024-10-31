@@ -10,5 +10,9 @@ export default interface QuizContextType {
   navigateBack: (questionNumber: number) => void;
   navigateForward: (questionNumber: number) => void;
   chooseAnswer: (answer: string, idx: number) => void;
-  quizLength: number
+  quizLength: number,
+  lastQuestionIdx: number,
+  clearQuiz: () => void,
+  quizRetaken: boolean,
+  setQuizRetaken: React.Dispatch<React.SetStateAction<boolean>>
 }

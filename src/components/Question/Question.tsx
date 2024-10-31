@@ -2,8 +2,10 @@ import questionArrow from "/assets/questionArrow.png";
 import { useQuizContext } from "../../contexts/QuizContext";
 import { STATUS } from "../../enums/Statuses.enum";
 import ProgressBar from "../ProgressBar/ProgressBar";
-import "./styles/Question.css";
+import "./Question.css";
 import QuestionProps from "../../interfaces/QuestionProps.interface";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 export default function Question({
@@ -17,8 +19,18 @@ export default function Question({
     navigateForward,
     chooseAnswer,
     activeAnswers,
-    quizLength
+    quizLength,
+    lastQuestionIdx
   } = useQuizContext();
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (lastQuestionIdx < idx) {
+      console.log(lastQuestionIdx)
+      console.log(idx)
+      navigate(`/quiz/${lastQuestionIdx + 1}`)
+    }
+  },[])
 
   return (
     <div className="question-outer-wrap">

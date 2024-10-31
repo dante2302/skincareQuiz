@@ -2,9 +2,13 @@ import homeImg from "/assets/homeImg.png";
 import homeMobile from "/assets/homeMobile.png";
 import "./HomePage.css";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import { useNavigate } from "react-router-dom";
+import { useQuizContext } from "../../contexts/QuizContext";
 
 export default function HomePage() {
   const winDimensions = useWindowDimensions();
+  const navigate = useNavigate();
+  const q = useQuizContext();
   return (
     <div>
       <div className="home-outer-wrap">
@@ -36,7 +40,10 @@ export default function HomePage() {
           </div>
 
           <div className="home-button-wrap">
-            <button className="home-button">Start the quiz</button>
+            <button 
+              className="home-button"
+              onClick={() => navigate("/quiz/1")}
+            >{q.lastQuestionIdx > 0 ? "Resume the quiz" : "Start the quiz"}</button>
           </div>
         </div>
       </div>

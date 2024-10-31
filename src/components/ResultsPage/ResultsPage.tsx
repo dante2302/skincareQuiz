@@ -5,9 +5,22 @@ import TextCard from "../ProductSlider/TextCard";
 import ProductCard from "../ProductCard/ProductCard";
 import ProductSlider from "../ProductSlider/ProductSlider";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import { useQuizContext } from "../../contexts/QuizContext";
+import { useNavigate } from "react-router-dom";
 
 export default function ResultsPage() {
     let winDimensions = useWindowDimensions();
+    const { clearQuiz, setQuizRetaken } = useQuizContext();
+
+    const navigate = useNavigate();
+
+    const retakeQuiz = () => 
+    {
+        clearQuiz();
+        setQuizRetaken(true);
+        navigate("/quiz/1");
+    }
+
     return (
         <div className="results-outer">
         <div className="results-hero">
@@ -33,7 +46,10 @@ export default function ResultsPage() {
                     </p>
                 </div>
                 <div className="retake-button-wrap">
-                    <button className="retake-button">Retake the quiz</button>
+                    <button 
+                        className="retake-button"
+                        onClick={retakeQuiz}
+                    >Retake the quiz</button>
                 </div>
             </div>
         </div>

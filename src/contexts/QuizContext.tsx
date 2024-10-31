@@ -16,19 +16,32 @@ export const useQuizContext = () => {
 };
 
 export const QuizProvider = ({ children, quiz }: { children: ReactNode, quiz: QuizObject }) => {
+  const defaultQuestionAnswers = Array(quiz.length).fill("");
+  const defaultActiveAnswers = Array(quiz.length).fill("");
+  const defaultErrorState = STATUS.Success;
+  const defaultLastQuestionIdx = 0;
+
   const [questionAnswers, setQuestionAnswers] =
     useLocalStorage<string[]>(
       LOCAL_STORAGE_KEYS.questionAnswers,
-      Array(quiz.length).fill("")
+      defaultQuestionAnswers
     );
 
   const [activeAnswers, setActiveAnswers] =
     useLocalStorage<string[]>(
       LOCAL_STORAGE_KEYS.activeAnswers, 
-      Array(quiz.length).fill("")
+      defaultActiveAnswers
     );
 
-  const [error, setError] = useState<Status>(STATUS.Success);
+  const [error, setError] = useState<Status>(defaultErrorState);
+
+  const [lastQuestionIdx, setLastQuestionIdx] = 
+    useLocalStorage(
+      LOCAL_STORAGE_KEYS.lastQuestionIdx,
+      defaultLastQuestionIdx
+    );
+
+  const [quizRetaken, setQuizRetaken] = useLocalStorage(LOCAL_STORAGE_KEYS.quizRetaken, false);
   const navigate = useNavigate();
 
   const navigateForward = (questionIdx: number) => {
@@ -38,21 +51,23 @@ export const QuizProvider = ({ children, quiz }: { children: ReactNode, quiz: Qu
     }
 
     if (questionIdx === questionAnswers.length - 1) {
-      navigate("/quiz-results");
+      navigate("/quiz/results");
       return
     }
 
-    navigate(`/question-${questionIdx + 2}`);
+    setLastQuestionIdx(questionIdx + 1);
+    navigate(`/quiz/${questionIdx + 2}`);
     // Idx is always 1 behind URL question number
     // To move forward - idx+2
   };
 
   const navigateBack = (questionIdx: number) => {
     if (questionIdx == 0) {
-      navigate("/");
+      quizRetaken ? navigate("quiz/results") : navigate("/");
       return;
     }
-    navigate(`/question-${questionIdx}`);
+    setLastQuestionIdx(questionIdx);
+    navigate(`/quiz/${questionIdx}`);
     // Idx is always 1 behind URL question number
     // To move backward - go to the /question-idx
   };
@@ -73,6 +88,13 @@ export const QuizProvider = ({ children, quiz }: { children: ReactNode, quiz: Qu
     });
   }
 
+  const clearQuiz = () => 
+  {
+    setQuestionAnswers(defaultQuestionAnswers);
+    setActiveAnswers(defaultActiveAnswers);
+    setError(defaultErrorState);
+    setLastQuestionIdx(defaultLastQuestionIdx);
+  }
   return (
     <QuizContext.Provider
       value={{
@@ -85,7 +107,11 @@ export const QuizProvider = ({ children, quiz }: { children: ReactNode, quiz: Qu
         navigateBack,
         navigateForward,
         chooseAnswer,
-        quizLength: quiz.length
+        quizLength: quiz.length,
+        lastQuestionIdx,
+        clearQuiz,
+        quizRetaken,
+        setQuizRetaken
       }}
     >
       {children}
