@@ -1,12 +1,14 @@
 import { ProgressBarTextProps } from "../../interfaces/ProgressBarProps.interface";
 
 export default function Text({
-  percentage,
   fontSize="1.5em",
   x="50%",
   y="50%",
   dominantBaseline="central",
-  textAnchor="middle"
+  textAnchor="middle",
+  percentage,
+  idx,
+  listLength
 
 }: ProgressBarTextProps)
 {
@@ -18,7 +20,7 @@ export default function Text({
       textAnchor={textAnchor}
       fontSize={fontSize}
     >
-      {percentage.toFixed(0)}%
+      {percentage ? `${percentage.toFixed(0)}%` : `${idx} / ${listLength}`}
     </text>
   );
 };

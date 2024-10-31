@@ -1,14 +1,15 @@
-import ProgressBarProps from "../../interfaces/ProgressBarProps.interface";
+import { PercentageBarProps } from "../../interfaces/ProgressBarProps.interface";
 import Circle from "./Circle";
 import Text from "./Text";
 
-export default function ProgressBar({
+export default function PercentageProgressBar({
   pathColor="lightgrey",
   trailColor="lightblue",
-  percentage,
-  width = 200,
-  height = 200
-}: ProgressBarProps) 
+  width= 200,
+  height= 200,
+  radius= 70,
+  percentage
+}: PercentageBarProps) 
 {
   const pct = filterPercentage(percentage);
   return (

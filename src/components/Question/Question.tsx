@@ -1,11 +1,11 @@
 import questionArrow from "/assets/questionArrow.png";
 import { useQuizContext } from "../../contexts/QuizContext";
 import { STATUS } from "../../enums/Statuses.enum";
-import ProgressBar from "../ProgressBar/ProgressBar";
 import "./Question.css";
 import QuestionProps from "../../interfaces/QuestionProps.interface";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import IndexProgressBar from "../ProgressBar/IndexProgressBar";
 
 
 export default function Question({
@@ -20,14 +20,13 @@ export default function Question({
     chooseAnswer,
     activeAnswers,
     quizLength,
-    lastQuestionIdx
+    lastQuestionIdx,
   } = useQuizContext();
 
   const navigate = useNavigate();
+
   useEffect(() => {
     if (lastQuestionIdx < idx) {
-      console.log(lastQuestionIdx)
-      console.log(idx)
       navigate(`/quiz/${lastQuestionIdx + 1}`)
     }
   },[])
@@ -70,8 +69,11 @@ export default function Question({
           </button>
         </div>
       </div>
-      <ProgressBar
-        percentage={(idx / quizLength) * 100}
+      <IndexProgressBar 
+        currentIndex={idx+1} 
+        listLength={quizLength} 
+        strokeWidth=".3rem"
+        radius={60}
       />
     </div>
   );
