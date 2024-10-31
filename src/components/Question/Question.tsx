@@ -48,7 +48,7 @@ export default function Question({
                 className="answer-button"
                 onClick={() => chooseAnswer(answer, idx)}
               >
-                {`${String.fromCharCode("a".charCodeAt(0) + 1)}. ${answer}`}
+                {`${String.fromCharCode("a".charCodeAt(0) + index)}. ${answer}`}
               </button>
             </li>
           )}

@@ -27,6 +27,7 @@
     }
     .question-content-container{
         height: 100vh;
+        width: 50vw;
     }
 }
 
@@ -37,7 +38,6 @@
 
 .question-heading{
   color: #1c2635;
-  max-width: 60%;
   margin: 0 !important;
   text-align: center;
   font-size: var(--fs-xl);
@@ -78,8 +78,8 @@ button{
   display: flex;
   justify-content: center;
   flex-direction: row;
-  width: 50%;
   flex-wrap: wrap;
+  width: 90%;
   gap: 10px;
   list-style: none;
 }
