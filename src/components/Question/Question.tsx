@@ -30,8 +30,13 @@ export default function Question({
       navigate(`/quiz/${lastQuestionIdx + 1}`)
     }
   },[])
+  useEffect(() => {
+  console.log(error);
+  },[error])
 
+  const isLastQuestion = idx === quizLength - 1;
   return (
+    <div className="question-error-wrap">
     <div className="question-outer-wrap">
       <div className="question-content-container">
         <h1 className="question-heading">{question}</h1>
@@ -64,10 +69,16 @@ export default function Question({
             className="next-question-button"
             onClick={() => navigateForward(idx)}
           >
-            {idx === quizLength - 1 ? "Discover your results!" : "Next Question"}
+            { isLastQuestion ? "Discover your results!" : "Next Question"}
             <img src={questionArrow} alt="arrowNext" />
           </button>
         </div>
+          {error > 0 && 
+          <div className="error">
+            <ChooseError />
+            <p>You need to choose an answer</p>
+          </div>
+            }
       </div>
       <IndexProgressBar 
         currentIndex={idx+1} 
@@ -75,6 +86,7 @@ export default function Question({
         strokeWidth=".3rem"
         radius={60}
       />
+    </div>
     </div>
   );
 }

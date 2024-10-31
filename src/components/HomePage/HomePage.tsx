@@ -9,6 +9,11 @@ export default function HomePage() {
   const winDimensions = useWindowDimensions();
   const navigate = useNavigate();
   const q = useQuizContext();
+  const startQuiz = () => { 
+    q.clearQuiz(); 
+    navigate("/quiz/1") 
+  };
+
   return (
     <div>
       <div className="home-outer-wrap">
@@ -42,7 +47,7 @@ export default function HomePage() {
           <div className="home-button-wrap">
             <button 
               className="home-button"
-              onClick={() => navigate("/quiz/1")}
+              onClick={startQuiz}
             >{q.lastQuestionIdx > 0 ? "Resume the quiz" : "Start the quiz"}</button>
           </div>
         </div>

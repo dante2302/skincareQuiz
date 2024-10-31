@@ -7,12 +7,28 @@ import ProductSlider from "../ProductSlider/ProductSlider";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { useQuizContext } from "../../contexts/QuizContext";
 import { useNavigate } from "react-router-dom";
+import useResults from "../../hooks/useResults";
+import { useEffect } from "react";
 
 export default function ResultsPage() {
     let winDimensions = useWindowDimensions();
-    const { clearQuiz, setQuizRetaken } = useQuizContext();
-
+    const { 
+        questionAnswers, 
+        lastQuestionIdx,
+        clearQuiz,
+        quizRetaken, 
+        setQuizRetaken,
+        quizLength
+    } = useQuizContext();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(lastQuestionIdx != quizLength - 1 && !quizRetaken)
+            navigate(`/quiz/${lastQuestionIdx+1}`);
+    }, []) 
+    const [products, setProducts, loading] = useResults(questionAnswers);
+
+
 
     const retakeQuiz = () => 
     {
@@ -53,7 +69,13 @@ export default function ResultsPage() {
                 </div>
             </div>
         </div>
-<ProductSlider items={[<ProductCard price={45} key={1}/>, <ProductCard price={5} key={2}/>]} mainItem={<TextCard />} styleClass="carousel-positioning"/>
+            <ProductSlider 
+                items={products.map(p => 
+                    <ProductCard price={p.variants[0].price}/>
+                ) } 
+                mainItem={<TextCard />} 
+                styleClass="carousel-positioning" 
+            />
             </div>
     );
 }

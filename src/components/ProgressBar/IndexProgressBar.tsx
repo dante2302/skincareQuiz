@@ -3,8 +3,8 @@ import Circle from "./Circle";
 import Text from "./Text";
 
 export default function IndexProgressBar({
-    pathColor = "lightgrey",
-    trailColor = "#0000FF",
+    pathColor = "#d5dfe3",
+    trailColor = "#aaddf3",
     width = 200,
     height = 200,
     radius,
@@ -13,8 +13,8 @@ export default function IndexProgressBar({
     currentIndex
 }: IndexBarProps) {
     const pct = ( currentIndex / listLength) * 100;
-    console.log(pct);
     currentIndex = filterIndex(currentIndex, listLength);
+
     return (
         <svg width={width} height={height}>
             <g transform={`rotate(-90 ${"100 100"})`}>

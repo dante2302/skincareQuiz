@@ -5,7 +5,9 @@ import { FilteredProduct } from "../interfaces/FilteredProduct.interface";
 import { Product } from "../interfaces/Product.interface";
 import { answerMap } from "../static/answerMap";
 
-const useResults = (questionAnswers: string[]) => {
+type Results = [FilteredProduct[], React.Dispatch<React.SetStateAction<FilteredProduct[]>>, boolean];
+
+const useResults = (questionAnswers: string[]): Results=> {
     const navigate = useNavigate();
     const [filteredProducts, setFilteredProducts] = useState<FilteredProduct[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -59,3 +61,5 @@ const useResults = (questionAnswers: string[]) => {
     }
     return [filteredProducts, setFilteredProducts, loading];
 };
+
+export default useResults;
