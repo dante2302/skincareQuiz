@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
+import { FilteredProduct } from "./FilteredProduct.interface";
 
 export default interface CarouselProps {
     mainItem: ReactNode;
-    items: ReactNode[];
+    items: FilteredProduct[];
     styleClass?: string
 }

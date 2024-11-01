@@ -3,14 +3,16 @@ import SliderArrow from '../SVGs/SliderArrow';
 import CarouselProps from '../../interfaces/CarouselProps.interface';
 import "./styles/ProductSlider.css";
 import useWindowDimensions from '../../hooks/useWindowDimensions';
+import ProductCard from '../ProductCard/ProductCard';
 
 export default function ProductSlider ({ mainItem, items, styleClass }: CarouselProps) {
     const [currentPage, setCurrentPage] = useState(0);
     const winDimensions = useWindowDimensions();
     const WIDTH_BOUNDARY = 768;
-    const totalItems = items.length;
     const itemsPerPage = winDimensions.width > WIDTH_BOUNDARY ? 2 : 1;
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    const totalPages = Math.ceil(items.length / itemsPerPage);
+    const startIdx = currentPage * itemsPerPage;
+    const displayedItems = items.slice(startIdx, startIdx + itemsPerPage);
 
     const handleNext = () => {
         setCurrentPage((prev) => (prev + 1) % totalPages);
@@ -20,12 +22,7 @@ export default function ProductSlider ({ mainItem, items, styleClass }: Carousel
         setCurrentPage((prev) => prev > 0 ? (prev - 1) % totalPages : totalPages - 1)
     }
 
-    const handleDotClick = (index: number) => {
-        setCurrentPage(index);
-    };
-
-    const startIdx = currentPage * itemsPerPage;
-    const displayedItems = items.slice(startIdx, startIdx + itemsPerPage);
+    const handleDotClick = (index: number) => setCurrentPage(index);
 
     return (
         <div className={`carousel ${styleClass} `}>
@@ -38,9 +35,9 @@ export default function ProductSlider ({ mainItem, items, styleClass }: Carousel
                             <SliderArrow isLeft={true} />
                         </button>
                     }
-                    {displayedItems.map((item, index) => (
-                        <div key={index} className="side-item">
-                            {item}
+                    {displayedItems.map((item) => (
+                        <div key={item.id} className="side-item">
+                            <ProductCard product={item}/>
                         </div>
                     ))}
                     {(winDimensions.width < WIDTH_BOUNDARY && items.length > 1) &&
@@ -57,7 +54,7 @@ export default function ProductSlider ({ mainItem, items, styleClass }: Carousel
                 <div className="dots">
                     {new Array(totalPages).fill(0).map((_, index) => (
                         <span
-                            key={(totalItems % index)+1}
+                            key={(items.length % index)+1}
                             className={`dot ${currentPage === index ? 'active' : ''}`}
                             onClick={() => handleDotClick(index)}
                         />

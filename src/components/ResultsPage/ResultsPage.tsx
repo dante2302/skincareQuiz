@@ -9,6 +9,7 @@ import { useQuizContext } from "../../contexts/QuizContext";
 import { useNavigate } from "react-router-dom";
 import useResults from "../../hooks/useResults";
 import { useEffect } from "react";
+import useFavorites from "../../hooks/useFavorites";
 
 export default function ResultsPage() {
     let winDimensions = useWindowDimensions();
@@ -27,9 +28,23 @@ export default function ResultsPage() {
             navigate(`/quiz/${lastQuestionIdx+1}`);
     }, []) 
     const [products, setProducts, loading] = useResults(questionAnswers);
-    console.log(products);
+    const [favoriteIds] = useFavorites();
+    products.sort((a, b) => sortFavorites(a.id, b.id, products, favoriteIds));
 
-
+    function sortFavorites<T>(a: T, b: T, arr1: any[], arr2: T[]) {
+        const indexA = arr2.indexOf(a);
+        const indexB = arr2.indexOf(b);
+        // If both elements are in arr2, sort by their index in arr2
+        if (indexA !== -1 && indexB !== -1) {
+            return indexA - indexB;
+        }
+        // If only a is in arr2, it should come first
+        if (indexA !== -1) return -1;
+        // If only b is in arr2, it should come first
+        if (indexB !== -1) return 1;
+        // If neither are in arr2, maintain original order
+        return 0;
+    };
 
     const retakeQuiz = () => 
     {
@@ -71,9 +86,7 @@ export default function ResultsPage() {
             </div>
         </div>
             <ProductSlider 
-                items={products.map(p => 
-                    <ProductCard product={p}/>
-                ) } 
+                items={products}
                 mainItem={<TextCard />} 
                 styleClass="carousel-positioning" 
             />

@@ -2,10 +2,10 @@
   border: none;
   background-color: transparent;
   position: absolute;
-  top: 5px;
-  right: 5px;
-  height: 40px;
-  width: 40px;
+  top: 15px;
+  right: 10px;
+  margin: 0;
+  z-index: 3;
   cursor: pointer;
   font-family: var(--ff-montserrat);
 }
