@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import useResults from "../../hooks/useResults";
 import { useEffect } from "react";
 import useFavorites from "../../hooks/useFavorites";
-import { TailSpin } from "react-loader-spinner";
 import LoadingOverlay from "./LoadingOverlay";
 
 export default function ResultsPage() {
