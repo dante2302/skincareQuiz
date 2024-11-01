@@ -22,6 +22,15 @@
   .results-img
   {
       width: 100%;
+      object-fit: cover;
+  }
+
+  .results-hero{
+    max-height: 500px;
+  }
+
+  .results-hero-content{
+    width: 85%;
   }
 }
 
@@ -81,7 +90,7 @@
   justify-content: center;
   background: transparent;
   height: 50px;
-  min-width: 260px;
+  padding-inline: 50px;
   text-align: center;
   font-size: 12pt;
   color: #fff;

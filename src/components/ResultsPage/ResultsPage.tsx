@@ -1,6 +1,6 @@
 import resultsImg from "/assets/resultsImg.png";
 import resultsMobile from "/assets/resultsMobile.png";
-import "./ResultsPage.css";
+import "./styles/ResultsPage.css";
 import TextCard from "../ProductSlider/TextCard";
 import ProductSlider from "../ProductSlider/ProductSlider";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
