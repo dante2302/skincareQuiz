@@ -13,11 +13,12 @@ const useResults = (questionAnswers: string[]): Results=> {
     const navigate = useNavigate();
     const [filteredProducts, setFilteredProducts] = 
         useLocalStorage<FilteredProduct[]>(LOCAL_STORAGE_KEYS.filteredProducts, []);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         async function asyncCall() {
-            if (filteredProducts.length > 0) return;
+            if (filteredProducts.length > 0 && questionAnswers.some(a => a == ""))
+                return;
             setLoading(true);
             const response = await getProducts();
             if (response.status > 0 || !response.data)

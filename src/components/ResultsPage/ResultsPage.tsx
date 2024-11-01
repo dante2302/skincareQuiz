@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import useResults from "../../hooks/useResults";
 import { useEffect } from "react";
 import useFavorites from "../../hooks/useFavorites";
+import { TailSpin } from "react-loader-spinner";
+import LoadingOverlay from "./LoadingOverlay";
 
 export default function ResultsPage() {
     const winDimensions = useWindowDimensions();
@@ -28,7 +30,7 @@ export default function ResultsPage() {
             navigate(`/quiz/${lastQuestionIdx+1}`);
         }
     }, []) 
-    const [products, loading] = useResults(questionAnswers);
+    const [products, _, loading] = useResults(questionAnswers);
     const [favoriteIds, setFavorites] = useFavorites();
     products.sort((a, b) => sortFavorites(a.id, b.id, favoriteIds));
 
@@ -56,6 +58,8 @@ export default function ResultsPage() {
     }
 
     return (
+        <>
+        <LoadingOverlay visible={loading} />
         <div className="results-outer">
         <div className="results-hero">
             <img
@@ -93,5 +97,6 @@ export default function ResultsPage() {
                 styleClass="carousel-positioning" 
             />
             </div>
+</>
     );
 }
