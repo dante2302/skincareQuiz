@@ -6,6 +6,7 @@ import QuestionProps from "../../interfaces/QuestionProps.interface";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import IndexProgressBar from "../ProgressBar/IndexProgressBar";
+import QuizError from "../SVGs/QuizError";
 
 
 export default function Question({
@@ -75,8 +76,8 @@ export default function Question({
         </div>
           {error > 0 && 
           <div className="error">
-            <ChooseError />
-            <p>You need to choose an answer</p>
+            <QuizError />
+            <p>You need to choose an answer!</p>
           </div>
             }
       </div>

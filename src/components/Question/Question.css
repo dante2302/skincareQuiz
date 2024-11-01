@@ -137,6 +137,14 @@ button{
 }
 
 .error{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   color: red;
   margin-left: 10px;
+}
+
+.error>svg{
+  width: 50px;
 }

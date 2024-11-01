@@ -27,6 +27,7 @@ export default function ResultsPage() {
             navigate(`/quiz/${lastQuestionIdx+1}`);
     }, []) 
     const [products, setProducts, loading] = useResults(questionAnswers);
+    console.log(products);
 
 
 
@@ -71,7 +72,7 @@ export default function ResultsPage() {
         </div>
             <ProductSlider 
                 items={products.map(p => 
-                    <ProductCard price={p.variants[0].price}/>
+                    <ProductCard product={p}/>
                 ) } 
                 mainItem={<TextCard />} 
                 styleClass="carousel-positioning" 
