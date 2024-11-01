@@ -22,7 +22,7 @@ export default function App() {
                     } />
                 )}
                 <Route path="quiz/results" element={<ResultsPage />} />
-                <Route path="*" element={<HomePage />} />
+                {/* <Route path="*" element={<HomePage />} /> */}
             </Routes>
         </QuizProvider>
     );

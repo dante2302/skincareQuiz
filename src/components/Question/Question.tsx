@@ -1,6 +1,5 @@
 import questionArrow from "/assets/questionArrow.png";
 import { useQuizContext } from "../../contexts/QuizContext";
-import { STATUS } from "../../enums/Statuses.enum";
 import "./Question.css";
 import QuestionProps from "../../interfaces/QuestionProps.interface";
 import { useNavigate } from "react-router-dom";
@@ -22,18 +21,16 @@ export default function Question({
     activeAnswers,
     quizLength,
     lastQuestionIdx,
+    quizRetaken
   } = useQuizContext();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (lastQuestionIdx < idx) {
-      navigate(`/quiz/${lastQuestionIdx + 1}`)
+      quizRetaken ? navigate("/quiz/results") : navigate(`/quiz/${lastQuestionIdx + 1}`)
     }
   },[])
-  useEffect(() => {
-  console.log(error);
-  },[error])
 
   const isLastQuestion = idx === quizLength - 1;
   return (

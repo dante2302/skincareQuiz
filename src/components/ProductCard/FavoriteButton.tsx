@@ -1,22 +1,21 @@
-import { useState } from "react";
 import Heart from "../SVGs/Heart";
 import "./styles/FavoriteButton.css";
 import useFavorites from "../../hooks/useFavorites";
 
-export default function FavoriteButton({productId}: {productId: number})
-{
-    const [favorites,setFavorites] = useFavorites();
-    console.log(favorites);
-    const [isFavorite, setIsFavorite] = useState(favorites.findIndex(v => v == productId) >= 0);
+export default function FavoriteButton({ productId }: { productId: number }) {
+    const [favorites, setFavorites] = useFavorites();
+    const checkFavorite = () => favorites.findIndex(v => v == productId) >= 0;
+
+    function handleFavoriteClick() {
+        setFavorites(() =>
+            checkFavorite() ? favorites.filter(v => v != productId) : [...favorites, productId]
+        );
+    }
+
     return (
-        <button 
-        onClick={() => setFavorites(
-            prev => { 
-                setIsFavorite(!isFavorite);
-                return isFavorite ? prev.filter(v => v == productId) : [...prev, productId]
-            })
-        }
-        className={`${ isFavorite ? "is-favorite" : ""} favorite-product`}>
+        <button
+            onClick={handleFavoriteClick}
+            className={`${checkFavorite() ? "is-favorite" : ""} favorite-product`}>
             <Heart />
         </button>
     );

@@ -3,14 +3,14 @@ import Circle from "./Circle";
 import Text from "./Text";
 
 export default function PercentageProgressBar({
-  pathColor="lightgrey",
-  trailColor="lightblue",
-  width= 200,
-  height= 200,
-  radius= 70,
-  percentage
-}: PercentageBarProps) 
-{
+  pathColor = "lightgrey",
+  trailColor = "lightblue",
+  width = 200,
+  height = 200,
+  radius = 70,
+  percentage,
+  strokeWidth
+}: PercentageBarProps) {
   const pct = filterPercentage(percentage);
   return (
     <svg width={width} height={height}>
@@ -18,8 +18,18 @@ export default function PercentageProgressBar({
         {/* Setting initial percentage to 100 of the first circle so that  
             There's a grey circle to be filled
         */}
-        <Circle color={pathColor} percentage={100} />
-        <Circle color={trailColor} percentage={pct} />
+        <Circle
+          color={pathColor}
+          percentage={100}
+          radius={radius}
+          strokeWidth={strokeWidth}
+        />
+        <Circle
+          color={trailColor}
+          percentage={pct}
+          radius={radius}
+          strokeWidth={strokeWidth}
+        />
       </g>
       <Text percentage={pct} />
     </svg>

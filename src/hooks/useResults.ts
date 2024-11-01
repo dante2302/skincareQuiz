@@ -4,26 +4,30 @@ import { getProducts } from "../services/resultService";
 import { FilteredProduct } from "../interfaces/FilteredProduct.interface";
 import { Product } from "../interfaces/Product.interface";
 import { answerMap } from "../static/answerMap";
+import useLocalStorage from "./useLocalStorage";
+import { LOCAL_STORAGE_KEYS } from "../enums/LocalStorageKeys.enum";
 
 type Results = [FilteredProduct[], React.Dispatch<React.SetStateAction<FilteredProduct[]>>, boolean];
 
 const useResults = (questionAnswers: string[]): Results=> {
     const navigate = useNavigate();
-    const [filteredProducts, setFilteredProducts] = useState<FilteredProduct[]>([]);
+    const [filteredProducts, setFilteredProducts] = 
+        useLocalStorage<FilteredProduct[]>(LOCAL_STORAGE_KEYS.filteredProducts, []);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         async function asyncCall() {
+            if (filteredProducts.length > 0) return;
             setLoading(true);
             const response = await getProducts();
             if (response.status > 0 || !response.data)
                 return;
-            let products = Object.values(response.data.products);
-            let filteredProducts = filterAndMapProducts(products, questionAnswers)
+            const products = Object.values(response.data.products);
+            const fProducts = filterAndMapProducts(products, questionAnswers)
                 .filter(fp => fp.matches > 0)
                 .sort((a, b) => b.matches - a.matches);
             setLoading(false);
-            setFilteredProducts(filteredProducts);
+            setFilteredProducts(fProducts);
         }
         asyncCall();
     }, []);
@@ -48,7 +52,7 @@ const useResults = (questionAnswers: string[]): Results=> {
             products.map(product => {
                 let matches = 0;
                 product.tags.map((tag: string) => {
-                    answerTags.map((answerTag: string) => {
+                    answerTags.forEach((answerTag: string) => {
                         if (answerTag === tag) matches++;
                     });
                 });

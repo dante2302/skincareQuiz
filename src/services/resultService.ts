@@ -1,5 +1,4 @@
 import { STATUS } from "../enums/Statuses.enum";
-import { Product } from "../interfaces/Product.interface";
 import { ProductResponse } from "../interfaces/ProductResponse.interface";
 import { ResultServiceResponse } from "../interfaces/ResultServiceResponse";
 

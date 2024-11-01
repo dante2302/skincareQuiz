@@ -2,7 +2,6 @@ import resultsImg from "/assets/resultsImg.png";
 import resultsMobile from "/assets/resultsMobile.png";
 import "./ResultsPage.css";
 import TextCard from "../ProductSlider/TextCard";
-import ProductCard from "../ProductCard/ProductCard";
 import ProductSlider from "../ProductSlider/ProductSlider";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import { useQuizContext } from "../../contexts/QuizContext";
@@ -12,7 +11,7 @@ import { useEffect } from "react";
 import useFavorites from "../../hooks/useFavorites";
 
 export default function ResultsPage() {
-    let winDimensions = useWindowDimensions();
+    const winDimensions = useWindowDimensions();
     const { 
         questionAnswers, 
         lastQuestionIdx,
@@ -25,13 +24,15 @@ export default function ResultsPage() {
 
     useEffect(() => {
         if(lastQuestionIdx != quizLength - 1 && !quizRetaken)
+        {
             navigate(`/quiz/${lastQuestionIdx+1}`);
+        }
     }, []) 
-    const [products, setProducts, loading] = useResults(questionAnswers);
-    const [favoriteIds] = useFavorites();
-    products.sort((a, b) => sortFavorites(a.id, b.id, products, favoriteIds));
+    const [products, loading] = useResults(questionAnswers);
+    const [favoriteIds, setFavorites] = useFavorites();
+    products.sort((a, b) => sortFavorites(a.id, b.id, favoriteIds));
 
-    function sortFavorites<T>(a: T, b: T, arr1: any[], arr2: T[]) {
+    function sortFavorites<T>(a: T, b: T, arr2: T[]) {
         const indexA = arr2.indexOf(a);
         const indexB = arr2.indexOf(b);
         // If both elements are in arr2, sort by their index in arr2
@@ -49,6 +50,7 @@ export default function ResultsPage() {
     const retakeQuiz = () => 
     {
         clearQuiz();
+        setFavorites([] as number[]);
         setQuizRetaken(true);
         navigate("/quiz/1");
     }

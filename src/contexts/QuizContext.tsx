@@ -95,6 +95,7 @@ export const QuizProvider = ({ children, quiz }: { children: ReactNode, quiz: Qu
     setError(defaultErrorState);
     setLastQuestionIdx(defaultLastQuestionIdx);
   }
+
   return (
     <QuizContext.Provider
       value={{
