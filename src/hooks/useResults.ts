@@ -35,6 +35,7 @@ const useResults = (questionAnswers: string[]): Results=> {
 
     useEffect(() => {
         if (!loading && filteredProducts.length === 0) navigate("/");
+        console.log("A");
     }, [loading]);
 
     const convertToTag = (answer: string): string | null => {
