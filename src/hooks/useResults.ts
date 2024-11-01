@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { getProducts } from "../services/resultService";
 import { FilteredProduct } from "../interfaces/FilteredProduct.interface";
 import { Product } from "../interfaces/Product.interface";
@@ -10,7 +9,6 @@ import { LOCAL_STORAGE_KEYS } from "../enums/LocalStorageKeys.enum";
 type Results = [FilteredProduct[], React.Dispatch<React.SetStateAction<FilteredProduct[]>>, boolean];
 
 const useResults = (questionAnswers: string[]): Results=> {
-    const navigate = useNavigate();
     const [filteredProducts, setFilteredProducts] = 
         useLocalStorage<FilteredProduct[]>(LOCAL_STORAGE_KEYS.filteredProducts, []);
     const [loading, setLoading] = useState<boolean>(false);
@@ -32,11 +30,6 @@ const useResults = (questionAnswers: string[]): Results=> {
         }
         asyncCall();
     }, []);
-
-    useEffect(() => {
-        if (!loading && filteredProducts.length === 0) navigate("/");
-        console.log("A");
-    }, [loading]);
 
     const convertToTag = (answer: string): string | null => {
         const tag = answerMap[answer as keyof typeof answerMap] || null;
