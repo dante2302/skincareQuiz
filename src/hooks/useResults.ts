@@ -41,6 +41,8 @@ const useResults = (questionAnswers: string[]): Results=> {
         questionAnswers: string[]
     ): FilteredProduct[] => {
         const tags = questionAnswers.map(convertToTag);
+        console.log(questionAnswers)
+        console.log(tags);
         const answerTags = tags.filter((tag) => tag !== null) as string[];
 
         const filteredProducts: FilteredProduct[] =

@@ -96,6 +96,6 @@ export default function ResultsPage() {
                 styleClass="carousel-positioning" 
             />
             </div>
-</>
+        </>
     );
 }

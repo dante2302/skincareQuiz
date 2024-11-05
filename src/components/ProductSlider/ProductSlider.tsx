@@ -40,17 +40,17 @@ export default function ProductSlider ({ mainItem, items, styleClass }: Carousel
                             <ProductCard product={item}/>
                         </div>
                     ))}
-                    {(winDimensions.width < WIDTH_BOUNDARY && items.length > 1) &&
+                    {(winDimensions.width < WIDTH_BOUNDARY && totalPages > 1) &&
                         <button className="arrow right" onClick={handleNext}>
                             <SliderArrow />
                         </button>
                     }
                 </div>
-                {(winDimensions.width > WIDTH_BOUNDARY && items.length > 1) &&
+                {(winDimensions.width > WIDTH_BOUNDARY && totalPages > 1) &&
                     <button className="arrow right" onClick={handleNext}><SliderArrow /></button>}
             </div>
 
-            {items.length > 1 &&
+            {totalPages > 1 &&
                 <div className="dots">
                     {new Array(totalPages).fill(0).map((_, index) => (
                         <span
